@@ -84,7 +84,7 @@ code {
   background:rgba(0, 0, 0, 0.67);
   position: relative;
   left:30%;
-  top: 185px;
+  top: 50px;
 }
 
 .chatroom{
@@ -144,4 +144,11 @@ code {
   text-align: center;
   background:rgb(10, 148, 20);
   width:602px;
+}
+
+.error-len {
+  color: white;
+  position: relative;
+  top: 120px;
+  text-align: center;
 }

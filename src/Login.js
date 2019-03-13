@@ -1,63 +1,73 @@
 import React, { Component } from 'react';
 
 
-function handleChangeUserName(e){
-  if(e.match("^[a-zA-Z ]*$")!== null) {
-    return e;
-  }
-}
 
 class Login extends Component {
-  login(e){
-    this.props.loginbutton(this.refs.username.value)
+
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      nameError: '',
+      error: '',
+      sign: '',
+    };
+  }
+
+  login (e){
+    let { name } = this.state;
+    if( name.length < 12 == name.length > 0){
+      this.props.loginbutton(this.refs.username.value)
+
+    }
   }
 
 
-constructor(){
-  super();
-  this.state={text:''};
-  this.onChange = this.onChange.bind(this);
+  handleNameChange = event => {
+    this.setState({ name: event.target.value }, () => {
+      this.validateName();
 
-}
+    });
+  };
 
-onChange(e){
-  if(e.target.value.match("^[a-zA-Z ]*$")) {
-    this.setState({text: e.target.value});
+
+  validateName = () => {
+    let { name } = this.state;
+    this.setState({
+      nameError:
+        name.length < 12 ? null: 'Max 12 characters',
+      error:
+        name.length > 0 ? null: 'Atleast 1 character',
+
+    });
   }
-}
-
-// handleChangeUserName(e){
-  // if(e.target.value.match("^[a-zA-Z ]*$")) {
-  //   this.setState({text: e.target.value});
-//
-//   }
-// }
 
 
-  render(){
 
-    let error = handleChangeUserName(this.state.text);
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <div className='login-div'>
+          <input
+              className="login-input"
+              type='text'
+              ref="username"
+              placeholder="Username"
+              value={this.state.name}
+              onChange={this.handleNameChange}
+              onBlur={this.validateName}
+          />
+            <div className='error-len'>{this.state.nameError}</div>
+            <div className='error-len'>{this.state.error}</div>
+            <button   className="btn-L"
+              onClick={(e) => this.login(e)}>Login
+            </button>
 
-    return(
-      <div className="login-div">
-      <input
-      className="login-input"
-      type='text'
-      ref="username"
-      placeholder="Username"
-      value={this.state.text}
-      onChange={this.onChange}
-      />
-      <button
-      className="btn-L"
-      onClick={(e) => this.login(e)}>Login
-      </button>
-      <div style= {{color: 'white'}}>
-        {error}
-      </div>
-      </div>
+        </div>
 
-    )
+      </form>
+    );
   }
 }
 
