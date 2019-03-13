@@ -10,6 +10,10 @@ import io from 'socket.io-client';
 const socket = io('http://ec2-13-53-66-202.eu-north-1.compute.amazonaws.com:3000');
 console.log(socket);
 
+
+
+
+
 class App extends Component {
   state = {
     showlogin:true
@@ -44,6 +48,10 @@ class App extends Component {
 
     })
   }
+
+
+
+
   render() {
     console.log(this.state)
     if(this.state.showlogin) {
@@ -57,6 +65,6 @@ class App extends Component {
       )
     }
   }
-}//routing
+}
 
 export default App;
