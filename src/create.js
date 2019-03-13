@@ -4,19 +4,16 @@ class Create extends Component {
   state = {
     message: ''
   }
-
-
-
   onchange(e) {
     this.setState({
       [e.target.name]:e.target.value
     })
   }
   onclick(){
-        this.props.getmessage(this.state)
-      }
+    console.log('click');
+    this.props.getmessage(this.state)
 
-      
+  }
   render () {
     return (
 
@@ -25,7 +22,6 @@ class Create extends Component {
         <input  className="input-send" onChange={(e) => this.onchange(e)} placeholder="Message" type="text" name="message"/>
         <button className="btn-send" onClick={() => this.onclick()}>Send</button>
     </div>
-
     );
   }
 }
