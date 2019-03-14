@@ -10,9 +10,10 @@ class Login extends Component {
       name: '',
       nameError: '',
       error: '',
-      sign: '',
+      signs: true,
+      signserror: ''
     };
-    this.handleChangeUserName = this.handleChangeUserName.bind(this);
+    this.validationsigns = this.validationsigns.bind(this);
   }
 
   login (e){
@@ -23,10 +24,17 @@ class Login extends Component {
     }
   }
 
-  handleChangeUserName(e){
-    if(e.target.value.match("^[a-zA-Z ]*$")) {
-      this.setState({name: e.target.value});
+  validationsigns = (e) => {
+    let regex = /^[a-zA-Z0-9\s-_]+$/;
+    if(regex.test(this.state.name)){
+      this.setState({sings:false})
+      this.props.loginbutton(this.refs.username.value)
+    }else {
+      this.setState({
+        signserror: "Ditt användarnamn får endast innehålla 1-12 alfanumerisk tecken"
+      });
     }
+
   }
 
 
@@ -39,7 +47,7 @@ class Login extends Component {
   };
 
 
-  validateName = (e) => {
+  validateName = () => {
     let { name } = this.state;
     let { pattern } = /"^[a-zA-Z ]*$"/
     this.setState({
@@ -47,7 +55,6 @@ class Login extends Component {
         name.length < 12 ? null: 'Max 12 characters',
       error:
         name.length > 0 ? null: 'Atleast 1 character',
-
 
     });
   }
@@ -71,20 +78,18 @@ class Login extends Component {
               value={this.state.name}
               onChange={
                 this.validateName,
-                this.handleNameChange,
-                this.handleChangeUserName
-
-
+                this.handleNameChange
               }
+
+
 
           />
             <div className='error-len'>{this.state.nameError}</div>
             <div className='error-len'>{this.state.error}</div>
-            <div className='error-len'>{this.state.sign}</div>
+            <div className='error-len'>{this.state.validationsigns}</div>
             <button
-
               className="btn-L"
-              onClick={(e) => this.login(e)}>Login
+              onClick={(e) => this.login(e), this.validationsigns}>Login
             </button>
 
         </div>
