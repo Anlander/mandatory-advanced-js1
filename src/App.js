@@ -16,16 +16,18 @@ console.log(socket);
 
 class App extends Component {
   state = {
-    showlogin:true
+    showlogin:true,
+    logoff:false
   }
+
   componentDidMount(){
     socket.on('connect', function(){});
     socket.on( 'messages', (messages) => {
     this.setState({ messages: messages });
-});
+    });
+
   }
   getmessage(newMessage){
-    console.log(newMessage)
     this.setState({
       newMessage
     }, () => {
@@ -33,9 +35,9 @@ class App extends Component {
         username: this.state.username,
         content: this.state.newMessage.message
       }, (res) => {
-        console.log(res)
+
         this.setState({
-          messages: [...this.state.messages, res.data.newMessage]
+        messages: [...this.state.messages, res.data.newMessage]
         })
       })
     })
@@ -49,18 +51,21 @@ class App extends Component {
     })
   }
 
+  logout = () => {
+      this.setState({ showlogin: true })
+    }
+
 
 
 
   render() {
-    console.log(this.state)
     if(this.state.showlogin) {
       return <Login loginbutton={(user) => this.gotochatroom(user)} />
     } else {
       return (
         <div>
           <Create getmessage={(newMessage) => this.getmessage(newMessage)} />
-          <Chatroom getmessage={this.state.messages} user={this.state.user} />
+          <Chatroom getmessage={this.state.messages} user={this.state.user} logout={this.logout} />
         </div>
       )
     }

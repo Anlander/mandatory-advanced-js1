@@ -63,11 +63,6 @@ class Login extends Component {
 
 
 
-
-
-
-
-
   render() {
     return (
       <div className='login-div'>
@@ -86,7 +81,6 @@ class Login extends Component {
               onClick={this.validationsigns}>Login
             </button>
             <div className='error-signs'>{this.state.signserror}</div>
-
         </div>
 
 

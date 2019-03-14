@@ -6,11 +6,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url("forest.jpg");
-  background-repeat:  repeat-y;
-  background-size: 100%;
+  background-repeat:  no-repeat;
+  background-size: cover;
   background-position: relative;
   height: 100vh;
-  height: 1200px;
+
 }
 
 code {
@@ -74,7 +74,7 @@ code {
 .big-div{
   position: relative;
   bottom:24%;
-  left: 30%;
+
 }
 .bigroom{
   overflow: auto;
@@ -84,7 +84,7 @@ code {
   color: white;
   background:rgba(0, 0, 0, 0.67);
   position: relative;
-  left:30%;
+  left: 360px;
   top: 50px;
 }
 
@@ -100,6 +100,7 @@ code {
   height: 37px;
   width: 70px;
   top: 490px;
+  left: 360px;
   border-style: none;
   background:rgb(10, 148, 20);
   color: white;
@@ -115,6 +116,7 @@ code {
 .input-send{
   width:530px;
   height: 35px;
+  left: 360px;
   top: 493px;
   font-size: 22px;
   position:relative;
@@ -164,4 +166,23 @@ code {
   top: 120px;
   font-size: 12px;
   text-align: center;
+}
+
+.signout{
+  width:602px;
+  height: 35px;
+  left: 360px;
+  top: 100px;
+  font-size: 22px;
+  position:relative;
+  outline: none;
+  border:none;
+  color:rgb(10, 148, 20);
+}
+
+
+.signout:hover {
+  opacity: 0.7;
+  cursor: pointer;
+
 }
