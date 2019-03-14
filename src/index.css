@@ -1,15 +1,16 @@
 body {
   margin: 0;
-  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url("forest.jpg");
-  background-repeat: no-repeat;
+  background-repeat:  repeat-y;
   background-size: 100%;
+  background-position: relative;
   height: 100vh;
+  height: 1200px;
 }
 
 code {
@@ -71,7 +72,7 @@ code {
 
 /* chatroom */
 .big-div{
-  position: absolute;
+  position: relative;
   bottom:24%;
   left: 30%;
 }
@@ -90,6 +91,7 @@ code {
 .chatroom{
   max-height: 100px;
   border-bottom: 1px solid black;
+  position: relative;
 
 
 }
@@ -97,10 +99,12 @@ code {
 .btn-send {
   height: 37px;
   width: 70px;
+  top: 490px;
   border-style: none;
   background:rgb(10, 148, 20);
   color: white;
-  position: absolute;
+  position: relative;
+  font-size: 16px;
 }
 
 .btn-send:hover {
@@ -111,6 +115,7 @@ code {
 .input-send{
   width:530px;
   height: 35px;
+  top: 493px;
   font-size: 22px;
   position:relative;
   outline: none;
@@ -150,5 +155,13 @@ code {
   color: white;
   position: relative;
   top: 120px;
+  text-align: center;
+}
+
+.error-signs {
+  color: red;
+  position: relative;
+  top: 120px;
+  font-size: 12px;
   text-align: center;
 }

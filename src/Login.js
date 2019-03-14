@@ -16,13 +16,13 @@ class Login extends Component {
     this.validationsigns = this.validationsigns.bind(this);
   }
 
-  login (e){
-    let { name } = this.state;
-    if( name.length < 12 && name.length > 0){
-      this.props.loginbutton(this.refs.username.value)
-
-    }
-  }
+  // login (e){
+  //   let { name } = this.state;
+  //   if( name.length < 12 && name.length > 0){
+  //     this.props.loginbutton(this.refs.username.value)
+  //
+  //   }
+  // }
 
   validationsigns = (e) => {
     let regex = /^[a-zA-Z0-9\s-_]+$/;
@@ -31,7 +31,7 @@ class Login extends Component {
       this.props.loginbutton(this.refs.username.value)
     }else {
       this.setState({
-        signserror: "Ditt användarnamn får endast innehålla 1-12 alfanumerisk tecken"
+        signserror: 'Username should only contain letters or numbers'
       });
     }
 
@@ -49,14 +49,16 @@ class Login extends Component {
 
   validateName = () => {
     let { name } = this.state;
-    let { pattern } = /"^[a-zA-Z ]*$"/
-    this.setState({
-      nameError:
-        name.length < 12 ? null: 'Max 12 characters',
-      error:
-        name.length > 0 ? null: 'Atleast 1 character',
-
-    });
+    if (name.length.name > 12){
+      this.setState({signs:false})
+    } else {
+      this.setState({
+        nameError:
+          name.length < 12 ? null: 'Max 12 characters',
+        error:
+          name.length > 0 ? null: 'Atleast 1 character',
+      });
+    }
   }
 
 
@@ -68,33 +70,26 @@ class Login extends Component {
 
   render() {
     return (
-      <form>
-        <div className='login-div'>
+      <div className='login-div'>
           <input
               className="login-input"
               type='text'
               ref="username"
               placeholder="Username"
               value={this.state.name}
-              onChange={
-                this.validateName,
-                this.handleNameChange
-              }
-
-
-
+              onChange={this.validateName, this.handleNameChange}
           />
             <div className='error-len'>{this.state.nameError}</div>
             <div className='error-len'>{this.state.error}</div>
-            <div className='error-len'>{this.state.validationsigns}</div>
             <button
               className="btn-L"
-              onClick={(e) => this.login(e), this.validationsigns}>Login
+              onClick={this.validationsigns}>Login
             </button>
+            <div className='error-signs'>{this.state.signserror}</div>
 
         </div>
 
-      </form>
+
     );
   }
 }
