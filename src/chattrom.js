@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Create from './create';
-import Emoji from 'react-emoji-render';
+import Emoji from 'react-emojione';
 import Linkify from 'react-linkify';
 
 
@@ -17,10 +17,8 @@ class Chatroom extends Component {
       return (
         <div className="chatroom" key={index.toString()}>
         <p className="user-chat">{ar.username}</p>
-        <p className="message-chat">
-          <Linkify>
-           <Emoji text={ar.content} />
-          </Linkify>
+        <p className="message-chat"> {ar.content}
+
         </p>
         </div>
 
@@ -33,7 +31,7 @@ class Chatroom extends Component {
       <div>
       <div className="bigroom">
         <Linkify properties={{target: '_blank', style: {color: 'red', fontWeight: 'bold', fontstyle: 'normal'}}}>
-         {message}
+        <Emoji>{message}</Emoji>
         </Linkify>
       </div>
       <button className="signout" onClick={this.props.logout}>Logout</button>
